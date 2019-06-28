@@ -1,0 +1,12 @@
+{
+	"AWSEBDockerrunVersion": "1",
+	"Image": {
+		"Name": "rangakaranam/06-todo-rest-api-containerized:0.0.1-SNAPSHOT",
+		"Update": "true"
+	},
+	"Ports": [
+		{
+			"ContainerPort": "5000"
+		}
+	]
+}
