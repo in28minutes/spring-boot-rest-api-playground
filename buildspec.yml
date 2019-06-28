@@ -1,0 +1,18 @@
+version: 0.2
+phases: 
+  install:
+    runtime-versions:
+       java: openjdk8
+    pre_build:
+       commands:
+       - echo "pre_build stage started"   
+   build:
+       commands:
+       - mvn package
+       - echo "build stage started"   
+   post_build:
+       commands:
+       - echo "post_build stage started"
+artifacts:
+   files:
+   - target/spring-boot-rest-api-playground-h2-0.0.1-SNAPSHOT.jar
