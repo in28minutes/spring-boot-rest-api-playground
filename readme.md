@@ -101,10 +101,11 @@ Hello World
 
 
 ## JPA Service URLs
-
-- GET - http://localhost:5000/jpa/users/in28minutes/todos
-
+```sh
+curl -X GET http://localhost:5000/jpa/users/in28minutes/todos/10001 | json_pp
 ```
+expected response
+```json
 [
   {
     "id": 10001,
@@ -131,10 +132,11 @@ Hello World
 ```
 
 #### Retrieve a specific todo
-
-- GET - http://localhost:5000/jpa/users/in28minutes/todos/10001
-
+```sh
+curl -X GET http://localhost:5000/jpa/users/in28minutes/todos/10001 | json_pp
 ```
+expected response
+```json
 {
   "id": 10001,
   "username": "in28minutes",
@@ -145,36 +147,28 @@ Hello World
 ```
 
 #### Creating a new todo
+```sh
+# create record inline
+curl -X POST http://localhost:5000/jpa/users/Iryna/todos --header "Content-Type: application/json" --data-binary '{"username": "Iryna","description": "my description","targetDate": "2030-11-09T10:49:23.566+0000","done": false}'
 
-- POST to http://localhost:5000/jpa/users/in28minutes/todos with BODY of Request given below
-
-```
-{
-  "username": "in28minutes",
-  "description": "Learn to Drive a Car",
-  "targetDate": "2030-11-09T10:49:23.566+0000",
-  "done": false
-}
+# create record from file, where /path/to/your/file.json should be replaced to real one
+curl -X POST http://localhost:5000/jpa/users/Iryna/todos --header "Content-Type: application/json" --data-binary @/path/to/your/file.json
 ```
 
-#### Updating a new todo
-
-- http://localhost:5000/jpa/users/in28minutes/todos/10001 with BODY of Request given below
-
+#### Updating a new todo record
 ```
-{
-  "id": 10001,
-  "username": "in28minutes",
-  "description": "Learn to Drive a Car",
-  "targetDate": "2045-11-09T10:49:23.566+0000",
-  "done": false
-}
+# create record inline
+curl -X PUT http://localhost:5000/jpa/users/Iryna/todos/1 --header "Content-Type: application/json" --data-binary '{"username": "Iryna","description": "my description - updated","targetDate": "2030-11-09T10:49:23.566+0000","done": false}'
+
+# create record from file, where /path/to/your/file.json should be replaced to real one
+curl -X PUT http://localhost:5000/jpa/users/Iryna/todos/1 --header "Content-Type: application/json" --data-binary @/path/to/your/file.json
 ```
 
 #### Delete todo
-
-- DELETE to http://localhost:5000/jpa/users/in28minutes/todos/10001
-
+```sh
+# delete record with ID=2
+curl -X DELETE http://localhost:5000/jpa/users/Iryna/todos/1
+```
 
 ## H2 Console
 
